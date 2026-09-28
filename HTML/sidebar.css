@@ -1,0 +1,60 @@
+/* Sidebar */
+.sidebar {
+    height: 100%;
+    padding: 22px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    user-select: none;
+}
+
+.sidebar div {
+    background-color: white;
+}
+
+/*Sidebar Head*/
+.sidebar-head {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    gap: 5px;
+    width: 300px;
+    height: 100px;
+    background-color: white;
+}
+
+.sidebar-head-left {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.sidebar-head-title {
+    font-size: 30px;
+    font-family: "inter";
+    font-weight: bold;
+}
+
+.sidebar-head-sub {
+    font-size: 15px;
+    font-family: "inter";
+    font-weight: 500;
+}
+
+.sidebar-head-right {
+    margin-top: 07px;
+    margin-left: 20px;
+}
+
+.expand-collapse {
+    background-color: white;
+    cursor: pointer;
+    stroke-width: 2px;
+}
+
+
+
+.logout {
+    margin-top: auto;
+}

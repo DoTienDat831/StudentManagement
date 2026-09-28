@@ -13,37 +13,6 @@ body {
     gap: 10px;
 }
 
-/* Sidebar */
-.sidebar {
-    height: 100%;
-    padding: 22px;
-    background-color: white;
-
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    user-select: none;
-}
-
-.sidebar div {
-    background-color: white;
-}
-
-
-.sidebar-head {
-    color: darkblue;
-    font-size: 30px;
-}
-
-.sidebar-head-sub {
-    font-size: 15px;
-    margin-top: -40px;
-}
-
-.logout {
-    margin-top: auto;
-}
-
 .menu {
     display: flex;
     flex-direction: column;
@@ -114,7 +83,7 @@ body {
 }
 
 .table-1-btn {
-    background-color: darkblue;
+    background-color: #0042D0;
     text-decoration: none;
     border: none;
     border-radius: 5px;

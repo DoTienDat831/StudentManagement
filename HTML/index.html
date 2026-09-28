@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <title>Interface</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <div class="sidebar">
-        <div class="sidebar-head">Quản lý môn học</div>
-        <div class="sidebar-head-sub">Trường Đại học Việt Nhật</div>
 
+        <div class="sidebar-head">
+            <div class="sidebar-head-left">
+                <div class="sidebar-head-title">Quản lý môn học</div>
+                <div class="sidebar-head-sub">Trường Đại học Việt Nhật</div>
+            </div>
+            <div class="sidebar-head-right">
+                <i class="expand-collapse" data-lucide="panel-right"></i>
+            </div>
+        </div>
+
+        <div class="sidebar-search-box">
+            <div class="search-box-box"></div>
+        </div>
 
         <nav class="menu">
             <a href="#">Dashboard</a>
@@ -90,6 +105,7 @@
                     </tbody> 
                 </table>
             </div>
+
         </div>
 
         <div class="components bot"></div>
