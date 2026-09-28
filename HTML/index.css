@@ -1,0 +1,179 @@
+* {
+    box-sizing: border-box;
+    background-color: #EFEFEF;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 10px;
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100%;
+    padding: 22px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    user-select: none;
+}
+
+.sidebar div {
+    background-color: white;
+}
+
+
+.sidebar-head {
+    color: darkblue;
+    font-size: 30px;
+}
+
+.sidebar-head-sub {
+    font-size: 15px;
+    margin-top: -40px;
+}
+
+.logout {
+    margin-top: auto;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.menu a {
+    color: black;
+    text-decoration: none;
+    background-color: white;
+}
+
+/* Top, Table, Bottom */
+.main {
+    height: 100vh;
+
+    display: grid;
+    grid-template-rows: 10vh 65vh 25vh;
+    gap: 10px;
+}
+
+/* Các thành phần bên phải */
+.components {
+    width: 100%;
+    padding: 30px;
+}
+
+/* Top */
+.top {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    gap: 20px;
+}
+
+.search {
+    flex: 1;
+    background-color: white;
+}
+
+.notification {
+    background-color: white;
+}
+
+.profile {
+    background-color: white;
+}
+
+/* Table */
+.table {
+    height: 100%;
+    background-color: white;
+    display: grid;
+    grid-template-rows: 1fr 1fr 8fr;
+    gap: 5px;
+}
+
+.table-1{
+    background-color: white;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+}
+
+.table-1-btn {
+    background-color: darkblue;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.QL {
+    flex: 1;
+    font-size: 30px;
+    background-color: white;
+}
+
+.table-1-btn {
+    width: 100px;
+    height: 40px;
+}
+
+.table-2{
+    background-color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+    padding:10px;
+}
+
+.table-3 {
+    background-color: white;
+    padding: 20px;
+    overflow: auto;
+    width: 100%;
+}
+
+.table-3 table {
+    border: none;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-3 th,
+.table-3 td {
+    padding: 10px 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.table-3 th {
+    background-color: darkblue;
+    color: white;
+}
+
+.table-3 td {
+    background-color: white;
+    color: black;
+}
+
+/* Bottom */
+
+.bot {
+    background-color: white;
+}

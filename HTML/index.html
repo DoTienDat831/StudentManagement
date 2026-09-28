@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Interface</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <div class="sidebar">
+        <div class="sidebar-head">Quản lý môn học</div>
+        <div class="sidebar-head-sub">Trường Đại học Việt Nhật</div>
+
+
+        <nav class="menu">
+            <a href="#">Dashboard</a>
+            <a href="#">Quản lý niên khóa</a>
+            <a href="#">Quản lý chương trình</a>
+            <a href="#">Quản lý học kỳ</a>
+            <a href="#">Quản lý nhóm môn học</a>
+            <a href="#">Quản lý phòng học</a>
+            <a href="#">Quản lý Khoa</a>
+            <a href="#">Quản lý giảng viên</a>
+            <a href="#">Quản lý sinh viên</a>
+        </nav>
+
+        <div class="logout">
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <div class="components top">
+            <div class="search">
+                <input type="text" placeholder="Search...">
+            </div>
+
+            <div class="notification">
+                <i class="notification" data-lucide="bell"></i>
+            </div>
+
+            <div class="profile">
+                <i class="profile" data-lucide="user"></i>
+                <span class="profile">Profile</span>
+            </div>
+        </div>
+
+
+        <div class="components table">
+
+            <div class="table-1">
+                <span class="QL"> Quản lý Sinh viên</span>
+                <button class="table-1-btn">Thêm mới</button>
+                <button class="table-1-btn">Xuất file</button>
+            </div>
+
+            <div class="table-2">
+                <input type="text" placeholder="Tìm kiếm">
+                <button>Tìm kiếm nâng cao</button>
+            </div>
+
+            <div class="table-3">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ Tên</th>
+                            <th>Ngày sinh</th>
+                            <th>Khoa</th>
+                            <th>Thao tác</th>
+                            <th>Chú thích</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Nguyễn Văn An</td>
+                            <td>12/03/2005</td>
+                            <td>Công nghệ thông tin</td>
+                            <td>
+                                <button>Sửa</button>
+                                <button>Xóa</button>
+                            </td>
+                            <td>Đang học</td>
+                        </tr>
+                    </tbody> 
+                </table>
+            </div>
+        </div>
+
+        <div class="components bot"></div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
+
