@@ -26,33 +26,79 @@
         </div>
 
         <div class="sidebar-search-box">
-            <div class="search-box-box"></div>
+            <i class="search-icon" data-lucide="search"></i>
+            <input class="search-input" placeholder="Search ...">
         </div>
 
-        <nav class="menu">
-            <a href="#">Dashboard</a>
-            <a href="#">Quản lý niên khóa</a>
-            <a href="#">Quản lý chương trình</a>
-            <a href="#">Quản lý học kỳ</a>
-            <a href="#">Quản lý nhóm môn học</a>
-            <a href="#">Quản lý phòng học</a>
-            <a href="#">Quản lý Khoa</a>
-            <a href="#">Quản lý giảng viên</a>
-            <a href="#">Quản lý sinh viên</a>
-        </nav>
+        <div class="sidebar-menu-container">
+            <div class="overall">
+                <i class="overall-icon" data-lucide="layout-dashboard"></i>
+                <span>Tổng quan</span>
+            </div>
 
-        <div class="logout">
-            <a href="#">Logout</a>
+            <div class="management">
+                <span>Quản lý</span>
+                <nav class="management-menu">
+                    <div class="menu-nav">
+                        <i class="menu-nav-icon" data-lucide="package"></i>
+                        <a href="#">Quản lý niên khóa</a>
+                    </div>
+                    <div class="menu-nav">
+                        <i class="menu-nav-icon" data-lucide="user"></i>
+                        <a href="#">Quản lý sinh viên</a>
+                    </div>
+                    <div class="menu-nav">
+                        <i class="menu-nav-icon" data-lucide="library-big"></i>
+                        <a href="#">Quản lý giảng viên</a>
+                    </div>
+                    <div class="menu-nav">
+                        <i class="menu-nav-icon" data-lucide="calendar-range"></i>
+                        <a href="#">Quản lý môn học</a>
+                    </div>
+                    <div class="menu-nav">
+                        <i class="menu-nav-icon" data-lucide="table"></i>
+                        <a href="#">Quản lý khoa</a>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="management">
+                <span>Báo cáo</span>
+                <nav class="management-menu">
+                    <div class="menu-nav">
+                        <i class="menu-nav-icon" data-lucide="scroll-text"></i>
+                        <a href="#">Báo cáo hàng tuần</a>
+                    </div>
+                    <div class="menu-nav">
+                        <i class="menu-nav-icon" data-lucide="file-spreadsheet"></i>
+                        <a href="#">Báo cáo sinh viên</a>
+                    </div>
+                    <div class="menu-nav">
+                        <i class="menu-nav-icon" data-lucide="table"></i>
+                        <a href="#">Báo cáo giảng viên</a>
+                    </div>
+                    <div class="menu-nav">
+                        <i class="menu-nav-icon" data-lucide="bug"></i>
+                        <a href="#">Báo cáo lỗi</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+
+        <div class="sidebar-bottom">
+            <div class="bottom-divider"></div>
         </div>
     </div>
 
     <div class="main">
 
         <div class="components top">
-            <div class="search">
-                <input type="text" placeholder="Search...">
+            <div class="message">
+                <i class="message" data-lucide="message-square"></i>
             </div>
-
             <div class="notification">
                 <i class="notification" data-lucide="bell"></i>
             </div>
@@ -68,13 +114,22 @@
 
             <div class="table-1">
                 <span class="QL"> Quản lý Sinh viên</span>
-                <button class="table-1-btn">Thêm mới</button>
-                <button class="table-1-btn">Xuất file</button>
+                    <button class="table-1-btn">
+                        <i class="add-icon" data-lucide="plus"></i> Thêm mới
+                    </button>
+
+                <button class="table-1-btn">
+                    <i class="add-icon" data-lucide="download"></i>
+                    Xuất file
+                </button>
             </div>
 
             <div class="table-2">
-                <input type="text" placeholder="Tìm kiếm">
-                <button>Tìm kiếm nâng cao</button>
+                <div class="search-box">
+                    <i class="search-icon" data-lucide="search"></i>
+                    <input class="search-input" placeholder="Search ...">
+                </div>
+                <button class="search-btn">Tìm kiếm</button>
             </div>
 
             <div class="table-3">
@@ -107,8 +162,6 @@
             </div>
 
         </div>
-
-        <div class="components bot"></div>
     </div>
 
     <script>

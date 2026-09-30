@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    background-color: #EFEFEF;
+    background-color: black;
 }
 
 body {
@@ -10,23 +10,7 @@ body {
 
     display: grid;
     grid-template-columns: 350px 1fr;
-    gap: 10px;
-}
-
-.menu {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background-color: white;
-    text-decoration: none;
-    cursor: pointer;
-    user-select: none;
-}
-
-.menu a {
-    color: black;
-    text-decoration: none;
-    background-color: white;
+    gap: 3px;
 }
 
 /* Top, Table, Bottom */
@@ -34,8 +18,8 @@ body {
     height: 100vh;
 
     display: grid;
-    grid-template-rows: 10vh 65vh 25vh;
-    gap: 10px;
+    grid-template-rows: 10vh 90vh;
+    gap: 3px;
 }
 
 /* Các thành phần bên phải */
@@ -47,9 +31,14 @@ body {
 /* Top */
 .top {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     background-color: white;
     gap: 20px;
+}
+
+.message {
+    background-color: white;
 }
 
 .search {
@@ -83,23 +72,33 @@ body {
 }
 
 .table-1-btn {
+    display: grid;
+    grid-template-columns: 20% 80%;
     background-color: #0042D0;
     text-decoration: none;
     border: none;
     border-radius: 5px;
     color: white;
     cursor: pointer;
+    width: 150px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-family: "Roboto Mono";
 }
+
+.add-icon {
+    background-color: transparent;
+}
+
 
 .QL {
     flex: 1;
     font-size: 30px;
+    font-family: "Roboto Mono";
+    font-weight: bold;
     background-color: white;
-}
-
-.table-1-btn {
-    width: 100px;
-    height: 40px;
 }
 
 .table-2{
@@ -109,6 +108,29 @@ body {
     align-items: center;
     gap: 5px;
     padding:10px;
+}
+
+.search-box {
+    background-color: white;
+    width: 300px;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    border: 2px solid black;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.search-btn {
+    width: 100px;
+    height: 40px;
+    color: white;
+    background-color: #0042D0;
+    border: none;
+    border-radius: 10px;
+    font-family: "Roboto Mono";
 }
 
 .table-3 {
