@@ -1,6 +1,7 @@
 package com.example.student_management.entity;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -11,24 +12,40 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "student_code", unique = true)
+    private String studentCode;
+
     private String name;
 
     private LocalDate dateOfBirth;
 
-    private String enrollmentYear;
+    private LocalDate enrollmentTime;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
-    private Department departments;
+    private Department department;
+
+    /*
+    @ManyToOne
+    @JoinColumn(name = "major_id")
+    private Major major;
+    */
 
     public Student() {
     }
 
-    public Student(String name, LocalDate dateOfBirth, Department departments, String enrollmentYear) {
+    public Student(
+            String name,
+            LocalDate dateOfBirth,
+            Department department,
+            String studentCode,
+            LocalDate enrollmentTime
+    ) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        this.departments = departments;
-        this.enrollmentYear = enrollmentYear;
+        this.department = department;
+        this.studentCode = studentCode;
+        this.enrollmentTime = enrollmentTime;
     }
 
     public Long getId() {
@@ -37,6 +54,14 @@ public class Student {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getStudentCode() {
+        return studentCode;
+    }
+
+    public void setStudentCode(String studentCode) {
+        this.studentCode = studentCode;
     }
 
     public String getName() {
@@ -55,19 +80,19 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public LocalDate getEnrollmentTime() {
+        return enrollmentTime;
+    }
+
+    public void setEnrollmentTime(LocalDate enrollmentTime) {
+        this.enrollmentTime = enrollmentTime;
+    }
+
     public Department getDepartment() {
-        return departments;
+        return department;
     }
 
     public void setDepartment(Department department) {
-        this.departments = department;
-    }
-
-    public String getEnrollmentYear() {
-        return enrollmentYear;
-    }
-
-    public void setEnrollmentYear(String enrollmentYear) {
-        this.enrollmentYear = enrollmentYear;
+        this.department = department;
     }
 }

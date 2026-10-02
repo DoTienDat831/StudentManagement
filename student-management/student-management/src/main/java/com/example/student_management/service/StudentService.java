@@ -17,8 +17,21 @@ public class StudentService {
     }
 
     @Transactional
-    public void createStudent(Student student) {
+    public Student createStudent(Student student) {
+
+        // Lưu Student trước để MySQL sinh ID
         studentDAO.save(student);
+
+        // Tạo studentCode từ ID
+        String studentCode =
+                String.format("VJU%05d", student.getId());
+
+        student.setStudentCode(studentCode);
+
+        // Cập nhật studentCode
+        studentDAO.update(student);
+
+        return student;
     }
 
     @Transactional(readOnly = true)
@@ -33,8 +46,24 @@ public class StudentService {
 
     @Transactional
     public Student updateStudent(Long id, Student student) {
-        studentDAO.update(student);
-        return student;
+
+        Student existingStudent = studentDAO.findById(id);
+
+        if (existingStudent == null) {
+            return null;
+        }
+
+        existingStudent.setName(student.getName());
+        existingStudent.setDateOfBirth(student.getDateOfBirth());
+        existingStudent.setEnrollmentTime(student.getEnrollmentTime());
+        existingStudent.setDepartment(student.getDepartment());
+
+        // Không cho phép update studentCode
+        // studentCode được sinh một lần khi tạo Student
+
+        studentDAO.update(existingStudent);
+
+        return existingStudent;
     }
 
     @Transactional

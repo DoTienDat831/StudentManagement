@@ -15,22 +15,27 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "department_name", nullable = false, unique = true)
+    private String departmentName;
+
     @Column(name = "department_code", nullable = false, unique = true)
     private String departmentCode;
 
     @Column(name = "tuition_fee", nullable = false)
     private BigDecimal tuitionFee;
 
-    @OneToMany(mappedBy = "departments")
+    @OneToMany(mappedBy = "department")
     @JsonIgnore
     private List<Student> students = new ArrayList<>();
 
     public Department() {
     }
 
-    public Department(String departmentCode, BigDecimal tuitionFee) {
+    public Department(String departmentCode, BigDecimal tuitionFee, Long id, String departmentName) {
         this.departmentCode = departmentCode;
         this.tuitionFee = tuitionFee;
+        this.id = id;
+        this.departmentName = departmentName;
     }
 
     public Long getId() {
@@ -62,5 +67,13 @@ public class Department {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 }

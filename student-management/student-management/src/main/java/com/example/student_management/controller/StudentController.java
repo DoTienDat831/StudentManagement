@@ -21,9 +21,10 @@ public class StudentController {
     public ResponseEntity<Student> createStudent(
             @RequestBody Student student) {
 
-        studentService.createStudent(student);
+        Student createdStudent =
+                studentService.createStudent(student);
 
-        return ResponseEntity.ok(student);
+        return ResponseEntity.ok(createdStudent);
     }
 
     @GetMapping
@@ -66,7 +67,8 @@ public class StudentController {
     public ResponseEntity<Void> deleteStudent(
             @PathVariable Long id) {
 
-        Student student = studentService.getStudentById(id);
+        Student student =
+                studentService.getStudentById(id);
 
         if (student == null) {
             return ResponseEntity.notFound().build();

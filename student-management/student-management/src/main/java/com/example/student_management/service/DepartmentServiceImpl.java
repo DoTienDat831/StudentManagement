@@ -31,6 +31,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     @Transactional
     public Department save(Department department) {
+
         return departmentDAO.save(department);
     }
 

@@ -131,6 +131,7 @@ body {
     border: none;
     border-radius: 10px;
     font-family: "Roboto Mono";
+    cursor: pointer;
 }
 
 .table-3 {
