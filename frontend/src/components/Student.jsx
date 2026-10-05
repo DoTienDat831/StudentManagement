@@ -1,5 +1,6 @@
-export default function StudentUI({
+export default function Student({
     students,
+    majors,
     form,
     editingId,
     search,
@@ -12,7 +13,7 @@ export default function StudentUI({
 }) {
     return (
         <>
-            <div className="container">
+            <div className="student-container">
                 <h1>Student Management</h1>
             </div>
 
@@ -43,6 +44,14 @@ export default function StudentUI({
                     onChange={handleChange}
                 />
 
+                <input
+                    type="string"
+                    name="email"
+                    placeholder="Email"
+                    value={form.email || ""}
+                    onChange={handleChange}
+                />
+
                 <select
                     name="majorId"
                     value={form.majorId}
@@ -51,9 +60,14 @@ export default function StudentUI({
                 >
                     <option value="">-- Select Major --</option>
 
-                    <option value="1">Công nghệ thông tin</option>
-                    <option value="2">Kỹ thuật phần mềm</option>
-                    <option value="3">Khoa học máy tính</option>
+                        {majors.map((major) => (
+                            <option
+                                key={major.id}
+                                value={major.id}
+                            >
+                                {major.name}
+                            </option>
+                        ))}
                 </select>
 
                 <button
@@ -86,6 +100,7 @@ export default function StudentUI({
                         <th>Name</th>
                         <th>Birth</th>
                         <th>Enrollment</th>
+                        <th>Email</th>
                         <th>Major</th>
                         <th>Action</th>
                     </tr>
@@ -102,6 +117,8 @@ export default function StudentUI({
                             <td>{student.dateOfBirth}</td>
 
                             <td>{student.enrollmentTime}</td>
+
+                            <td>{student.email}</td>
 
                             <td>{student.major?.name || ""}</td>
 
