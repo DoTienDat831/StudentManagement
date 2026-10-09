@@ -4,6 +4,7 @@ import com.example.student_management.entity.Student;
 import com.example.student_management.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity<Student> createStudent(
-            @RequestBody Student student) {
+            @Valid @RequestBody Student student) {
 
         Student createdStudent =
                 studentService.createStudent(student);
@@ -51,7 +52,7 @@ public class StudentController {
     @PutMapping("/{id}")
     public ResponseEntity<Student> updateStudent(
             @PathVariable Long id,
-            @RequestBody Student student) {
+            @Valid @RequestBody Student student) {
 
         Student updatedStudent =
                 studentService.updateStudent(id, student);

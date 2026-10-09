@@ -12,10 +12,13 @@ const empty = {
 
 function useStudents() {
     const [students, setStudents] = useState([]);
-    const [form, setForm] = useState(empty);
+    const [addForm, setAddForm] = useState(empty);
+    const [editForm, setEditForm] = useState(empty);
     const [editingId, setEditingId] = useState(null);
     const [search, setSearch] = useState("");
     const [error, setError] = useState("");
+    const [addError, setAddError] = useState("");
+    const [editError, setEditError] = useState("");
     const [majors, setMajors] = useState([]);
 
     // Lấy danh sách student từ backend
@@ -46,60 +49,77 @@ function useStudents() {
         loadMajors();
     }, []);
 
-    // Xử lý thay đổi input
-    const handleChange = (e) => {
+    const updateForm = (form, setForm, e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
         });
     };
 
-    // Thêm / cập nhật student
-    const handleSubmit = async (e) => {
+    const makeStudentPayload = (form) => ({
+        name: form.name,
+        dateOfBirth: form.dateOfBirth || null,
+        enrollmentTime: form.enrollmentTime || null,
+        email: form.email,
+        major: { id: Number(form.majorId) }
+    });
+
+    // Luồng tạo mới độc lập với luồng cập nhật.
+    const handleAddChange = (e) => updateForm(addForm, setAddForm, e);
+    const handleEditChange = (e) => updateForm(editForm, setEditForm, e);
+
+    const handleAddSubmit = async (e) => {
         e.preventDefault();
-        setError("");
+        setAddError("");
 
         try {
-            const student = {
-                name: form.name,
-                dateOfBirth: form.dateOfBirth,
-                enrollmentTime: form.enrollmentTime,
-                email: form.email,
-                major: {
-                    id: Number(form.majorId)
-                }
-            };
-
-            console.log("DATA SEND TO BACKEND:", student);
-
-            if (editingId) {
-                await studentApi.update(editingId, student);
-            } else {
-                await studentApi.create(student);
-            }
-
-            setForm(empty);
-            setEditingId(null);
+            await studentApi.create(makeStudentPayload(addForm));
+            setAddForm(empty);
             await load();
-
         } catch (err) {
-            setError(
+            setAddError(
                 err.response?.data?.message ||
-                "Something went wrong"
+                "Không thể thêm sinh viên"
             );
         }
     };
 
-    // Chọn student để chỉnh sửa
+    // Mở form cập nhật riêng; không thay đổi form thêm mới.
     const handleEdit = (student) => {
-        setForm({
+        setEditForm({
             name: student.name || "",
             dateOfBirth: student.dateOfBirth || "",
             enrollmentTime: student.enrollmentTime || "",
-            major: student.major || ""
+            email: student.email || "",
+            majorId: student.major?.id ? String(student.major.id) : ""
         });
 
         setEditingId(student.id);
+        setEditError("");
+    };
+
+    const handleUpdateSubmit = async (e) => {
+        e.preventDefault();
+        if (editingId == null) return;
+        setEditError("");
+
+        try {
+            await studentApi.update(editingId, makeStudentPayload(editForm));
+            setEditingId(null);
+            setEditForm(empty);
+            await load();
+        } catch (err) {
+            setEditError(
+                err.response?.data?.message ||
+                "Không thể cập nhật sinh viên"
+            );
+        }
+    };
+
+    const handleCancelEdit = () => {
+        setEditingId(null);
+        setEditForm(empty);
+        setEditError("");
     };
 
     // Xóa student
@@ -119,22 +139,30 @@ function useStudents() {
         }
     };
 
-    // Tìm kiếm theo ID
+    // Tìm theo ID số hoặc mã sinh viên.
+    const query = search.trim().toLowerCase();
     const filteredStudents = students.filter((student) =>
-        student.studentCode?.toLowerCase().includes(search.toLowerCase())
+        String(student.id).toLowerCase().includes(query) ||
+        student.studentCode?.toLowerCase().includes(query)
     );
 
     return {
         students: filteredStudents,
         majors,
-        form,
+        addForm,
+        editForm,
         editingId,
         search,
         error,
+        addError,
+        editError,
         setSearch,
-        handleChange,
-        handleSubmit,
+        handleAddChange,
+        handleEditChange,
+        handleAddSubmit,
+        handleUpdateSubmit,
         handleEdit,
+        handleCancelEdit,
         handleDelete
     };
 }

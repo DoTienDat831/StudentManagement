@@ -1,6 +1,9 @@
 package com.example.student_management.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -15,15 +18,18 @@ public class Student {
     @Column(name = "student_code", unique = true)
     private String studentCode;
 
+    @NotBlank
     private String name;
 
     private LocalDate dateOfBirth;
 
     private LocalDate enrollmentTime;
 
+    @Email
     private String email;
 
     @ManyToOne
+    @NotNull
     @JoinColumn(name = "major_id")
     private Major major;
 

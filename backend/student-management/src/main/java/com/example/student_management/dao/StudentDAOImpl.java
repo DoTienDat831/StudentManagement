@@ -21,11 +21,6 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public Student save(Student student) {
         entityManager.persist(student);
-
-        entityManager.flush();
-
-        String studentCode = String.format("VJU%04d", student.getId());
-        entityManager.merge(student);
         return student;
     }
 
