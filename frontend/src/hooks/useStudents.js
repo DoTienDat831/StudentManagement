@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import studentApi from "../api/studentApi";
-import majorApi from "../api/majorApi";
+import departmentApi from "../api/departmentApi";
 
 const empty = {
     name: "",
     dateOfBirth: "",
+    gender: "",
     enrollmentTime: "",
     email:"",
-    majorId: ""
+    departmentId: ""
 };
 
 function useStudents() {
@@ -19,34 +20,39 @@ function useStudents() {
     const [error, setError] = useState("");
     const [addError, setAddError] = useState("");
     const [editError, setEditError] = useState("");
-    const [majors, setMajors] = useState([]);
+    const [departments, setDepartments] = useState([]);
+    const [departmentError, setDepartmentError] = useState("");
 
     // Lấy danh sách student từ backend
     const load = async () => {
+        setError("");
         try {
             const { data } = await studentApi.getAll();
-            setStudents(data);
+            setStudents(Array.isArray(data) ? data : []);
         } catch (err) {
             setError(
                 err.response?.data?.message ||
-                "Không thể tải danh sách sinh viên"
+                "Không thể tải danh sách sinh viên. Hãy kiểm tra backend và kết nối cơ sở dữ liệu."
             );
         }
     };
 
-    const loadMajors = async () => {
+    const loadDepartments = useCallback(async () => {
+        setDepartmentError("");
         try {
-            const { data } = await majorApi.getAll();
-            setMajors(data);
+            const { data } = await departmentApi.getAll();
+            setDepartments(Array.isArray(data) ? data : []);
         } catch (err) {
-            console.error("Không thể tải danh sách major:", err);
+            setDepartmentError(
+                err.response?.data?.message || "Không thể tải danh sách department."
+            );
         }
-    };
+    }, []);
 
     // Chỉ load dữ liệu khi component được tạo
     useEffect(() => {
         load();
-        loadMajors();
+        loadDepartments();
     }, []);
 
     const updateForm = (form, setForm, e) => {
@@ -59,9 +65,10 @@ function useStudents() {
     const makeStudentPayload = (form) => ({
         name: form.name,
         dateOfBirth: form.dateOfBirth || null,
+        gender: form.gender || null,
         enrollmentTime: form.enrollmentTime || null,
         email: form.email,
-        major: { id: Number(form.majorId) }
+        department: { id: Number(form.departmentId) }
     });
 
     // Luồng tạo mới độc lập với luồng cập nhật.
@@ -71,7 +78,6 @@ function useStudents() {
     const handleAddSubmit = async (e) => {
         e.preventDefault();
         setAddError("");
-
         try {
             await studentApi.create(makeStudentPayload(addForm));
             setAddForm(empty);
@@ -89,9 +95,14 @@ function useStudents() {
         setEditForm({
             name: student.name || "",
             dateOfBirth: student.dateOfBirth || "",
+            gender: student.gender || "",
             enrollmentTime: student.enrollmentTime || "",
             email: student.email || "",
-            majorId: student.major?.id ? String(student.major.id) : ""
+            departmentId: student.department?.id
+                ? String(student.department.id)
+                : student.studentClass?.department?.id
+                    ? String(student.studentClass.department.id)
+                    : ""
         });
 
         setEditingId(student.id);
@@ -102,7 +113,6 @@ function useStudents() {
         e.preventDefault();
         if (editingId == null) return;
         setEditError("");
-
         try {
             await studentApi.update(editingId, makeStudentPayload(editForm));
             setEditingId(null);
@@ -148,7 +158,9 @@ function useStudents() {
 
     return {
         students: filteredStudents,
-        majors,
+        departments,
+        departmentError,
+        loadDepartments,
         addForm,
         editForm,
         editingId,
