@@ -4,6 +4,7 @@
     color: #1b2740;
 }
 
+
 .department-header,
 .department-list-heading,
 .department-form-heading {
@@ -73,15 +74,15 @@
 .department-icon-button { display: grid; width: 32px; height: 32px; place-items: center; border: 0; border-radius: 8px; color: #718099; background: #f3f6fa; cursor: pointer; }
 
 .department-form {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 15px;
+    display: flex;
+    gap:20px;
+    align-items: center;
+    justify-content: center;
 }
 
 .department-form label { display: grid; gap: 7px; color: #59677f; font-size: 12px; font-weight: 650; }
 .department-form input { width: 100%; min-height: 41px; padding: 0 11px; border: 1px solid #dce3ec; border-radius: 8px; color: #263650; background: #fff; font: inherit; font-weight: 450; }
 .department-form input:focus, .department-search:focus-within { border-color: #74c5a2; outline: 3px solid #a9e6cf55; }
-.department-form-actions { display: flex; align-items: end; gap: 9px; grid-column: 1 / -1; }
 .department-secondary-button { min-height: 42px; padding: 0 14px; border: 1px solid #dce3ec; border-radius: 9px; color: #52617a; background: #fff; font-weight: 650; cursor: pointer; }
 .department-secondary-button:hover { background: #f6f8fb; }
 .department-error { margin: 0 0 15px; padding: 11px 13px; border: 1px solid #f4c9c5; border-radius: 8px; color: #a52a24; background: #fff3f2; font-size: 13px; }

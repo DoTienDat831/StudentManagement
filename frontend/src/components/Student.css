@@ -51,10 +51,16 @@
 
 .student-list-heading h2 { margin: 0; color: #1c2941; font-size: 16px; }
 .student-list-heading p { margin: 5px 0 0; color: #8995a8; font-size: 12px; }
+.student-list-tools { display: flex; align-items: center; gap: 9px; }
 .student-search { display: flex; width: min(100%, 270px); min-height: 38px; align-items: center; gap: 8px; padding: 0 10px; border: 1px solid #dce3ec; border-radius: 8px; color: #8894a7; }
 .student-search:focus-within { border-color: #74c5a2; outline: 3px solid #a9e6cf55; }
 .student-search input { width: 100%; border: 0; outline: 0; color: #263650; background: transparent; font: inherit; font-size: 12px; }
 .student-search input::placeholder { color: #9aa5b5; }
+.student-export-button { display: inline-flex; min-height: 38px; flex: 0 0 auto; align-items: center; justify-content: center; gap: 7px; padding: 0 12px; border: 1px solid #b8dfcd; border-radius: 8px; color: #28664e; background: #eff9f4; font-size: 12px; font-weight: 700; cursor: pointer; }
+.student-export-button:hover:not(:disabled) { border-color: #91cdb0; background: #e4f5ec; }
+.student-export-button:disabled { color: #9aa5b5; border-color: #e3e8ef; background: #f6f8fa; cursor: not-allowed; }
+.student-export-button > span { font-size: 17px; line-height: 1; }
+.student-export-error { margin: 0; padding: 0 21px 14px; color: #a52a24; font-size: 12px; }
 .student-table-wrap { overflow-x: auto; }
 
 .student-table { width: 100%; border-collapse: collapse; text-align: left; }
@@ -71,12 +77,12 @@
 .student-row-actions button:last-child:hover { border-color: #f1cbc8; }
 .student-empty { height: 110px; color: #8a96a9 !important; text-align: center; }
 
-.stu-top-page { display: flex; justify-content: flex-end; gap: 20px; }
-
 @media (max-width: 900px) {
     .student-form { align-items: stretch; }
     .student-form input, .student-form select { flex: 1 1 190px; }
     .student-list-heading { align-items: flex-start; flex-direction: column; }
+    .student-list-tools { width: 100%; align-items: stretch; flex-direction: column; }
     .student-search { width: 100%; }
+    .student-export-button { width: 100%; }
     .student-table-wrap { overflow-x: auto; }
 }

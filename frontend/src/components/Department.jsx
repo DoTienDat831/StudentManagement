@@ -1,4 +1,4 @@
-import { Building2, CirclePlus, Pencil, Search, Trash2, X } from "lucide-react";
+import { Building2, CirclePlus, Pencil, Search, Trash2, X, Bell, Mail } from "lucide-react";
 import useDepartments from "../hooks/useDepartments";
 import "./Department.css";
 
@@ -27,9 +27,7 @@ function Department() {
         <div className="department-page">
             <header className="department-header">
                 <div>
-                    <p className="department-eyebrow">ACADEMIC STRUCTURE</p>
                     <h1>Departments</h1>
-                    <p className="department-subtitle">Quản lý các khoa và mức học phí.</p>
                 </div>
                 <button className="department-primary-button" type="button" onClick={openCreateForm}>
                     <CirclePlus size={17} />
@@ -47,6 +45,7 @@ function Department() {
 
             {isFormOpen && (
                 <section className="department-form-card" aria-labelledby="department-form-title">
+
                     <div className="department-form-heading">
                         <div>
                             <h2 id="department-form-title">{editingId == null ? "Add department" : "Update department"}</h2>
@@ -56,25 +55,25 @@ function Department() {
                             <X size={18} />
                         </button>
                     </div>
+
                     <form className="department-form" onSubmit={handleSubmit}>
+
                         <label>
-                            <span>Department code</span>
-                            <input name="departmentCode" value={form.departmentCode} onChange={handleChange} required />
+                            <input name="departmentCode" value={form.departmentCode} onChange={handleChange} required placeholder="Department code" />
                         </label>
                         <label>
-                            <span>Department name</span>
-                            <input name="departmentName" value={form.departmentName} onChange={handleChange} required />
+                            <input name="departmentName" value={form.departmentName} onChange={handleChange} required placeholder="Name"/>
                         </label>
                         <label>
-                            <span>Tuition fee (VND)</span>
-                            <input name="tuitionFee" type="number" min="0" step="1" value={form.tuitionFee} onChange={handleChange} required />
-                        </label>
+                            <input name="tuitionFee" type="number" min="0" step="1" value={form.tuitionFee} onChange={handleChange} required placeholder="Tuition fee"/>
+                        </label>    
+
                         <div className="department-form-actions">
                             <button className="department-primary-button" type="submit" disabled={saving}>
                                 {saving ? "Saving…" : editingId == null ? "Create department" : "Save changes"}
                             </button>
-                            <button className="department-secondary-button" type="button" onClick={closeForm}>Cancel</button>
                         </div>
+
                     </form>
                 </section>
             )}

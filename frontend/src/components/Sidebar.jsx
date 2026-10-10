@@ -23,7 +23,7 @@ function Sidebar({ collapsed, onToggle, activePage, onNavigate }) {
                 <span className="brand-mark">S</span>
 
                 <span className="brand-copy">
-                    <strong>Quản lý sinh viên</strong>
+                    <strong>Quản lý trường học</strong>
                     <small>ADMIN PORTAL</small>
                 </span>
             </a>
@@ -46,8 +46,13 @@ function Sidebar({ collapsed, onToggle, activePage, onNavigate }) {
 
             <nav className="sidebar-nav">
                 <a
-                    className="sidebar-link"
+                    className={`sidebar-link${activePage === "dashboard" ? " active" : ""}`}
                     href="#dashboard"
+                    aria-current={activePage === "dashboard" ? "page" : undefined}
+                    onClick={(event) => {
+                        event.preventDefault();
+                        onNavigate("dashboard");
+                    }}
                 >
                     <span className="nav-icon" aria-hidden="true">
                         <LayoutDashboard />
@@ -96,13 +101,18 @@ function Sidebar({ collapsed, onToggle, activePage, onNavigate }) {
                 </a>
 
                 <a
-                    className="sidebar-link"
-                    href="#majors"
+                    className={`sidebar-link${activePage === "classes" ? " active" : ""}`}
+                    href="#classes"
+                    aria-current={activePage === "classes" ? "page" : undefined}
+                    onClick={(event) => {
+                        event.preventDefault();
+                        onNavigate("classes");
+                    }}
                 >
                     <span className="nav-icon" aria-hidden="true">
                         <Book />
                     </span>
-                    <span>Majors</span>
+                    <span>Classes</span>
                 </a>
 
                 <a
