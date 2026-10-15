@@ -3,7 +3,6 @@ package com.example.student_management.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -23,15 +22,21 @@ public class Student {
 
     private LocalDate dateOfBirth;
 
+    @Column(length = 10)
+    private String gender;
+
     private LocalDate enrollmentTime;
 
     @Email
     private String email;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "major_id")
-    private Major major;
+    private Class studentClass;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     public Student() {
     }
@@ -41,14 +46,14 @@ public class Student {
             LocalDate dateOfBirth,
             String studentCode,
             LocalDate enrollmentTime,
-            Major major,
+            Class studentClass,
             String email
     ) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.studentCode = studentCode;
         this.enrollmentTime = enrollmentTime;
-        this.major = major;
+        this.studentClass = studentClass;
         this.email = email;
     }
 
@@ -84,6 +89,14 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public LocalDate getEnrollmentTime() {
         return enrollmentTime;
     }
@@ -92,12 +105,20 @@ public class Student {
         this.enrollmentTime = enrollmentTime;
     }
 
-    public Major getMajor() {
-        return major;
+    public Class getStudentClass() {
+        return studentClass;
     }
 
-    public void setMajor(Major major) {
-        this.major = major;
+    public void setStudentClass(Class studentClass) {
+        this.studentClass = studentClass;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public String getEmail() {

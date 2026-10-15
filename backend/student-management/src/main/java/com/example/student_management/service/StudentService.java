@@ -1,8 +1,8 @@
 package com.example.student_management.service;
 
 import com.example.student_management.dao.StudentDAO;
-import com.example.student_management.dao.MajorDAO;
-import com.example.student_management.entity.Major;
+import com.example.student_management.dao.DepartmentDAO;
+import com.example.student_management.entity.Department;
 import com.example.student_management.entity.Student;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -15,16 +15,17 @@ import java.util.List;
 public class StudentService {
 
     private final StudentDAO studentDAO;
-    private final MajorDAO majorDAO;
+    private final DepartmentDAO departmentDAO;
 
-    public StudentService(StudentDAO studentDAO, MajorDAO majorDAO) {
+    public StudentService(StudentDAO studentDAO, DepartmentDAO departmentDAO) {
         this.studentDAO = studentDAO;
-        this.majorDAO = majorDAO;
+        this.departmentDAO = departmentDAO;
     }
 
     @Transactional
     public Student createStudent(Student student) {
-        student.setMajor(resolveMajor(student.getMajor()));
+        student.setDepartment(resolveDepartment(student.getDepartment()));
+        student.setStudentClass(null);
 
         // Lưu Student trước để MySQL sinh ID
         studentDAO.save(student);
@@ -61,7 +62,8 @@ public class StudentService {
         existingStudent.setDateOfBirth(student.getDateOfBirth());
         existingStudent.setEnrollmentTime(student.getEnrollmentTime());
         existingStudent.setEmail(student.getEmail());
-        existingStudent.setMajor(resolveMajor(student.getMajor()));
+        existingStudent.setDepartment(resolveDepartment(student.getDepartment()));
+        existingStudent.setStudentClass(null);
 
         // Không cho phép update studentCode
         // studentCode được sinh một lần khi tạo Student
@@ -76,13 +78,13 @@ public class StudentService {
         studentDAO.delete(id);
     }
 
-    private Major resolveMajor(Major requestedMajor) {
-        Major major = requestedMajor == null || requestedMajor.getId() == null
+    private Department resolveDepartment(Department requestedDepartment) {
+        Department department = requestedDepartment == null || requestedDepartment.getId() == null
                 ? null
-                : majorDAO.findById(requestedMajor.getId());
-        if (major == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Major does not exist");
+                : departmentDAO.findById(requestedDepartment.getId());
+        if (department == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Department does not exist");
         }
-        return major;
+        return department;
     }
 }

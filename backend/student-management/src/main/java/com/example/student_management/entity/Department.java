@@ -26,7 +26,7 @@ public class Department {
 
     @OneToMany(mappedBy = "department")
     @JsonIgnore
-    private List<Major> majors = new ArrayList<>();
+    private List<Class> classes = new ArrayList<>();
 
     public Department() {
     }
@@ -71,11 +71,11 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public List<Major> getMajors() {
-        return majors;
+    public List<Class> getClasses() {
+        return classes;
     }
 
-    public void setMajors(List<Major> majors) {
-        this.majors = majors;
+    public void setClasses(List<Class> classes) {
+        this.classes = classes;
     }
 }

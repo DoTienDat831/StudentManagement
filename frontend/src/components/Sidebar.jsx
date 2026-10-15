@@ -7,7 +7,8 @@ import {
     Settings,
     PanelLeftClose,
     PanelLeftOpen,
-    GraduationCap
+    GraduationCap,
+    Files
 
 } from "lucide-react";
 
@@ -113,6 +114,19 @@ function Sidebar({ collapsed, onToggle, activePage, onNavigate }) {
                         <Book />
                     </span>
                     <span>Classes</span>
+                </a>
+
+                <a
+                    className={`sidebar-link${activePage === "documents" ? " active" : ""}`}
+                    href="#documents"
+                    aria-current={activePage === "documents" ? "page" : undefined}
+                    onClick={(event) => {
+                        event.preventDefault();
+                        onNavigate("documents");
+                    }}
+                >
+                    <span className="nav-icon" aria-hidden="true"><Files /></span>
+                    <span>Documents</span>
                 </a>
 
                 <a

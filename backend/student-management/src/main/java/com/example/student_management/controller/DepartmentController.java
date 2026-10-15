@@ -2,6 +2,7 @@ package com.example.student_management.controller;
 
 import com.example.student_management.entity.Department;
 import com.example.student_management.service.DepartmentService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,7 +44,8 @@ public class DepartmentController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         departmentService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

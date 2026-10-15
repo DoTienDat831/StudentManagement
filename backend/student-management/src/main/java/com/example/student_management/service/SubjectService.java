@@ -36,7 +36,7 @@ public class SubjectService {
         }
 
         existingSubject.setName(subject.getName());
-        existingSubject.setMajor(subject.getMajor());
+        existingSubject.setStudentClass(subject.getStudentClass());
 
         subjectDAO.update(existingSubject);
 

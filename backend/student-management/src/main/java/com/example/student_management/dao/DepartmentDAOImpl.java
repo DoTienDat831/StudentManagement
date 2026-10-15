@@ -48,6 +48,14 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         Department department = entityManager.find(Department.class, id);
 
         if (department != null) {
+            // Class.department is the owning side of the relationship and
+            // Class.department_id references this row. Keep classes (and their
+            // students/subjects) intact by removing that association first.
+            entityManager.createQuery(
+                    "UPDATE Class m SET m.department = null WHERE m.department.id = :departmentId")
+                    .setParameter("departmentId", id)
+                    .executeUpdate();
+
             entityManager.remove(department);
         }
     }

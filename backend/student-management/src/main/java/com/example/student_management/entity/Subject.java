@@ -14,7 +14,7 @@ public class Subject {
 
     @ManyToOne
     @JoinColumn(name = "major_id")
-    private Major major;
+    private Class studentClass;
 
     public Subject() {
     }
@@ -35,11 +35,11 @@ public class Subject {
         this.name = name;
     }
 
-    public Major getMajor() {
-        return major;
+    public Class getStudentClass() {
+        return studentClass;
     }
 
-    public void setMajor(Major major) {
-        this.major = major;
+    public void setStudentClass(Class studentClass) {
+        this.studentClass = studentClass;
     }
 }

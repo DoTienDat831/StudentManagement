@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar";
 import Department from "./components/Department";
 import ClassPage from "./components/Class";
 import Dashboard from "./components/Dashboard";
+import Documents from "./components/Documents";
 import { useEffect, useState } from "react";
 import "./App.css";
 
@@ -31,6 +32,8 @@ function App() {
                     <Department />
                 ) : activePage === "classes" ? (
                     <ClassPage />
+                ) : activePage === "documents" ? (
+                    <Documents />
                 ) : (
                     <Student className="student-management" {...studentData} />
                 )}
